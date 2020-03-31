@@ -1,3 +1,5 @@
 {
-    "baseUrl": "http://altice.dev.kargo.com"
+    "baseUrl": "http://altice.dev.kargo.com",
+    "viewportWidth": 1280,
+    "viewportHeight": 800
 }
