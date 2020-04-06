@@ -24,6 +24,6 @@ context('Login-Logout', () => {
         cy.get('[class="alert-text"]').should('contain', 'The login detail is incorrect');
       });
 
-      xit('Forget Password');
+      xit('Forget Password');  // Will be added when feature is completed & pushed to Dev
     });
   });
