@@ -48,7 +48,7 @@ context('Advertiser', () => {
             cy.route(`api/v1/advertisers?sort_order=desc&sort_by=id&page=0&limit=10&search=${advertiserName}`).as('searchAPI');
             cy.visit('');
             cy.get('[placeholder="Search"]', { timeout: 2000 }).type(advertiserName).wait('@searchAPI'); // adding wait for api return results
-            cy.get('button:nth-child(1)', { timeout: 4000 }).eq(8).click();  // Click on View Advertiser button on the 1st row 
+            cy.get('[mattooltip="View advertiser"]').click();  // Click on View Advertiser button on the 1st row 
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', advertiserName);  // verifies title 
             cy.log('Verifies Active is checked');
             cy.get('div:nth-child(2) > i').should('have.class', 'fa fa-check');  // verifies Active is checked 
