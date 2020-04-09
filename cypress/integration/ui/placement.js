@@ -1,8 +1,8 @@
 const { retrieveUserToken } = require('../../helpers/session-token-grabber');
 const { generateName } = require('../../helpers/name-helper');
 
-context('Campaign', () => {
-    describe('Campaign UI', () => {
+context('Placement', () => {
+    describe('Placement UI', () => {
         let userTokenResponse;
         let apiToken;
         
@@ -24,7 +24,7 @@ context('Campaign', () => {
 
 
         // create CRUD test
-        it('Retrieve an Advertiser to select as Parent', () => {
+        it('Retrieve an Campaign to select as Parent', () => {
             const lastCreatedCampaign = Cypress.moment().format('YY.');
             
             const getRequest = (options = {}) => {
