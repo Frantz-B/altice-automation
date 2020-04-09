@@ -67,8 +67,8 @@ context('Advertiser', () => {
             cy.visit(`/advertisers/${advertiserID}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on edit advertiser button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit advertiser option
-            cy.get('[placeholder="Enter Name"]').clear().type(advertiserName); 
-            cy.get('[placeholder="Enter External ID"]').clear().type(externalId);
+            cy.get('[placeholder="Enter Name"]').clear({ force: true }).type(advertiserName); 
+            cy.get('[placeholder="Enter External ID"]').clear({ force: true }).type(externalId);
 
             // Adding Political Info
             cy.get('[role="switch"]').click({ force: true }); 
