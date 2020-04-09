@@ -111,11 +111,11 @@ context('Campaign', () => {
             cy.visit(`/campaigns/${campaignID}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Campaign button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit campaign option
-            cy.get('[placeholder="Enter Name"]').clear().type(campaignName); 
-            cy.get('[placeholder="Enter Trafficker Name"]').type(trafficker); 
-            cy.get('[placeholder="Choose a Contract Date"]').clear().type(contractDate);
-            cy.get('[placeholder="Enter IO Number"]').type(ioNumber);
-            cy.get('[placeholder="Enter External ID"]').type(externalId);  
+            cy.get('[placeholder="Enter Name"]').clear({ force: true }).type(campaignName); 
+            cy.get('[placeholder="Enter Trafficker Name"]').clear({ force: true }).type(trafficker); 
+            cy.get('[placeholder="Choose a Contract Date"]').clear({ force: true }).type(contractDate);
+            cy.get('[placeholder="Enter IO Number"]').clear({ force: true }).type(ioNumber);
+            cy.get('[placeholder="Enter External ID"]').clear({ force: true }).type(externalId);  
             cy.get('[mattooltip="Save changes"]').click();  //.wait(1000)
             cy.url().should('include', '/campaigns/');  
         });
