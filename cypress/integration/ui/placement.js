@@ -1,5 +1,5 @@
 const { retrieveUserToken } = require('../../helpers/session-token-grabber');
-const { generateName } = require('../../helpers/name-helper');
+const { generateName, generateRandomNum } = require('../../helpers/name-helper');
 
 context('Placement', () => {
     describe('Placement UI', () => {
@@ -19,8 +19,8 @@ context('Placement', () => {
         let campaignId;
         let placementId;
         let placementName = generateName('Placement');
-        let rate = 14;
-        let impressionGoal = 7000;
+        let rate = generateRandomNum(100);
+        let impressionGoal = generateRandomNum(900000);
 
 
         // create CRUD test
@@ -37,7 +37,7 @@ context('Placement', () => {
             };
 
             const campaignRequestOptions = getRequest({
-                url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=z${lastCreatedCampaign}`,
+                url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedCampaign}`,
             });
 
             cy.request(campaignRequestOptions).then((resp) => {
