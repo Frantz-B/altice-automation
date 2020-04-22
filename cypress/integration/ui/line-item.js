@@ -38,7 +38,7 @@ context('Line-Item', () => {
             };
 
             const placementRequestOptions = getRequest({
-                url: `/api/v1/placements?sort_order=desc&sort_by=id&page=0&limit=10&search=z${lastCreatedPlacement}`,
+                url: `/api/v1/placements?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedPlacement}`,
             });
 
             cy.request(placementRequestOptions).then((resp) => {

@@ -37,7 +37,7 @@ context('Placement', () => {
             };
 
             const campaignRequestOptions = getRequest({
-                url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=z${lastCreatedCampaign}`,
+                url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedCampaign}`,
             });
 
             cy.request(campaignRequestOptions).then((resp) => {

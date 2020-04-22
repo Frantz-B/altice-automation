@@ -38,7 +38,7 @@ context('Campaign', () => {
             };
 
             const advertiserRequestOptions = getRequest({
-                url: `/api/v1/advertisers?sort_order=desc&sort_by=id&page=0&limit=10&search=z${lastCreatedAdvertiser}`,
+                url: `/api/v1/advertisers?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedAdvertiser}`,
             });
 
             cy.request(advertiserRequestOptions).then((resp) => {
