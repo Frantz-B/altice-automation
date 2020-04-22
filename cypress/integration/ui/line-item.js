@@ -53,7 +53,9 @@ context('Line-Item', () => {
         });
 
         it('Create a Line-Item', () => {
-            cy.visit(`/placements/${placementId}`);
+            cy.server();
+            cy.route(`/api/v1/placements/${placementId}`).as('placementPageLoad');
+            cy.visit(`/placements/${placementId}`).wait('@placementPageLoad');
             cy.get('[mattooltip="Create new Line Item"]').click(); // clicking on create Line-item button
             cy.get('[placeholder="Enter Name"]').first().click().type(lineItemName); // clicking on the field for Line-item name
             cy.get('[placeholder="Enter Name"]').last().click().type(impressionGoal); // clicking on the field for Impression Goal
