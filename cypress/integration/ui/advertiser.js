@@ -21,7 +21,6 @@ context('Advertiser', () => {
             name: 'UI Kargo-QA',
             orgName: 'Kargo Automation',
             office: 'Kargo NYC',
-            phone: '2129790000',
             repName: 'Quality',
             address: '4 Broad ST',
             city: 'Manhattan',
@@ -82,8 +81,7 @@ context('Advertiser', () => {
             cy.get('[placeholder="Enter Organization City"]').type(political.city); 
             cy.get('[placeholder="Select Organization State"]').click(); 
             cy.contains('New York').click(); // Selecting New York for State
-            cy.get('[placeholder="Enter Organization Zip Code"]').type(political.zipCode); 
-            cy.get('[placeholder="Enter Organization Phone Number"]').type(political.phone); 
+            cy.get('[placeholder="Enter Organization Zip Code"]').type(political.zipCode);  
             cy.get('[mattooltip="Save changes"]').click(); 
         });
 
@@ -103,15 +101,13 @@ context('Advertiser', () => {
             cy.log('Verifies Political Name');
             cy.get('li:nth-child(1)').eq(2).should('contain', political.name);  // verifies Political Name 
             cy.log('Verifies Political Office');
-            cy.get('li:nth-child(2)').eq(2).should('contain', political.office);  // verifies Political Office 
+            cy.get('li:nth-child(1)').eq(3).should('contain', political.office);  // verifies Political Office 
             cy.log('Verifies Political Rep Name');
-            cy.get('li:nth-child(3)').eq(0).should('contain', political.repName);  // verifies Political Rep Name 
+            cy.get('li:nth-child(2)').eq(2).should('contain', political.repName);  // verifies Political Rep Name 
             cy.log('Verifies Political Email');
-            cy.get('li:nth-child(4)').should('contain', political.email);  // verifies Political Email 
+            cy.get('li:nth-child(3)').should('contain', political.email);  // verifies Political Email 
             cy.log('Verifies Political Org Name');
-            cy.get('li:nth-child(1)').eq(3).should('contain', political.orgName);  // verifies Political Org Name 
-            cy.log('Verifies Political Phone');
-            cy.get('li:nth-child(2)').eq(3).should('contain', political.phone);  // verifies Political Phone 
+            cy.get('li:nth-child(2)').eq(3).should('contain', political.orgName);  // verifies Political Org Name 
             cy.log('Verifies Political Address');
             cy.get('li:nth-child(3)').eq(1).should('contain', political.address);  // verifies Political Address 
         });
