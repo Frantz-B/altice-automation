@@ -46,8 +46,13 @@ context('Line-Item', () => {
                 if( placementRow.length == 0 ) {
                     throw new Error("No Campaign Id returned"); // Temp solution
                 } else {
-                    placementId = placementRow[0].id;
-                    cy.log('Placement ID found:' + placementId);
+                    const selectedPlacement = placementRow.find(({ canArchive }) => canArchive === true);
+                    if (!selectedPlacement) {
+                        throw new Error("No valid Placement returned"); // Temp solution
+                    } else {
+                        placementId = selectedPlacement.id;
+                        cy.log('Placement ID found:' + placementId);
+                    }
                 }
             });
         });
@@ -71,7 +76,7 @@ context('Line-Item', () => {
         
         it('Verify elements of Previously Created Line-Item', () => {
             cy.server();
-            cy.route(`/api/v1/line-items?sort_order=asc&sort_by=name&page=0&limit=5&placementId=${placementId}&search=${lineItemName}`)
+            cy.route(`/api/v1/line-items?sort_order=desc&sort_by=id&page=0&limit=5&placementId=${placementId}&search=${lineItemName}`)
                 .as('searchAPI');
             cy.visit(`/placements/${placementId}`);
             cy.get('[placeholder="Search"]', { timeout: 2000 }).first().type(lineItemName).wait('@searchAPI'); // adding wait for api return results
