@@ -85,7 +85,7 @@ context('Line-Item', () => {
             cy.log('Verifies Line-Item Name');
             cy.get('[mattooltip="View line item"]').should('contain', lineItemName);  // verifies Name of Line-Item
             cy.log('Verifies Status');
-            cy.get('mat-cell.cdk-column-status').should('contain', 'DRAFT');  // When line-items are first created, it should be have DRAFT status
+            cy.get('mat-cell.cdk-column-status').should('contain', 'Draft');  // When line-items are first created, it should be have DRAFT status
             cy.log('Verifies Start Date');
             cy.get('mat-cell.cdk-column-startFlightDate').should('contain', startDate.slice(1, -2));  // verifies Start Date of Line-Item
             cy.log('Verifies End Date');
@@ -97,7 +97,7 @@ context('Line-Item', () => {
             cy.get('[mattooltip="View line item"]').click();  // Clicks on Line-Item from Advertiser page
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', lineItemName);  // verifies Title 
             cy.log('Verifies Status on Line-Item Detail page');
-            cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', 'DRAFT');  // verifies Status on Line-Item Detail page 
+            cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', 'DRAFT - Missing Creative');  // verifies Status on Line-Item Detail page 
             cy.log('Verifies Start Date on Line-Item Detail page');
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(startDate).format('ll'));  // verifies Start Date on Line-Item Detail page 
             cy.log('Verifies End Date on Line-Item Detail page');
@@ -127,7 +127,7 @@ context('Line-Item', () => {
             cy.visit(`/line-items/${lineItemId}`);
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', lineItemName);  // verifies Title 
             cy.log('Verifies Status on Line-Item Detail page');
-            cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', 'DRAFT');  // verifies Status on Line-Item Detail page 
+            cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', 'DRAFT - Missing Creative');  // verifies Status on Line-Item Detail page 
             cy.log('Verifies Start Date on Line-Item Detail page');
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(startDate).format('ll'));  // verifies Start Date on Line-Item Detail page 
             cy.log('Verifies End Date on Line-Item Detail page');
