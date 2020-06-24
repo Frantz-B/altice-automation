@@ -3,10 +3,10 @@
 
 exports.retrieveUserToken = async () => {
     const loginRequestOption = {
-        url: 'http://altice.dev.kargo.com/api/v1/account/login',
+        url: 'https://altice.dev.kargo.com/api/v1/account/login',
         method: 'POST',
         headers: {
-            authorization: 'Basic ZnJhbnR6QGthcmdvLmNvbTphZG1pbg==',
+            Authorization: 'Basic ZnJhbnR6QGthcmdvLmNvbTphZG1pbg==',
         },
     };
 
