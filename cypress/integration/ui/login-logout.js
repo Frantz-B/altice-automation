@@ -21,7 +21,7 @@ context('Login-Logout', () => {
         cy.get('[placeholder="Email"]').focus().clear().type('eh@kargo.com', );
         cy.get('[placeholder="Password"]').focus().clear().type('wrong', );
         cy.get('[id="kt_login_signin_submit"]').click();
-        cy.get('[class="alert-text"]').should('contain', 'The login detail is incorrect');
+        cy.get('[class="alert-text"]').should('contain', 'The login email or password are incorrect'); // verifying the displayed message when the user enters an invalid password / email.
       });
 
       xit('Forget Password');  // Will be added when feature is completed & pushed to Dev
