@@ -1,6 +1,14 @@
 {
-    "baseUrl": "http://altice.dev.kargo.com",
+    "baseUrl": "https://altice.dev.kargo.com",
     "viewportWidth": 1280,
     "viewportHeight": 800,
-    "video": false
+    "video": false,
+    "testFiles": [
+        "*/advertiser*", 
+        "*/campaign*", 
+        "*/placement*", 
+        "*/line-item*", 
+        "*/creative*", 
+        "*/login*"
+    ]
 }

@@ -76,7 +76,7 @@ context('Line-Item', () => {
         
         it('Verify elements of Previously Created Line-Item', () => {
             cy.server();
-            cy.route(`/api/v1/line-items?sort_order=desc&sort_by=id&page=0&limit=5&placementId=${placementId}&search=${lineItemName}`)
+            cy.route(`/api/v1/line-items?sort_order=desc&sort_by=id&page=0&limit=*&placementId=${placementId}&search=${lineItemName}`)
                 .as('searchAPI');
             cy.visit(`/placements/${placementId}`);
             cy.get('[placeholder="Search"]', { timeout: 2000 }).first().type(lineItemName).wait('@searchAPI'); // adding wait for api return results
@@ -85,7 +85,7 @@ context('Line-Item', () => {
             cy.log('Verifies Line-Item Name');
             cy.get('[mattooltip="View line item"]').should('contain', lineItemName);  // verifies Name of Line-Item
             cy.log('Verifies Status');
-            cy.get('mat-cell.cdk-column-status').should('contain', 'Draft');  // When line-items are first created, it should be have DRAFT status
+            cy.get('mat-cell.cdk-column-status').should('contain', 'Creative Missing');  // When line-items are first created, it should be have Creative Missing status
             cy.log('Verifies Start Date');
             cy.get('mat-cell.cdk-column-startFlightDate').should('contain', startDate.slice(1, -2));  // verifies Start Date of Line-Item
             cy.log('Verifies End Date');
