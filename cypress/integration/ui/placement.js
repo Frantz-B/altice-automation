@@ -69,8 +69,9 @@ context('Placement', () => {
         
         it('Verify elements of Previously Created Placement', () => {
             cy.server();
-            cy.route(`api/v1/placements?sort_order=desc&sort_by=id&page=0&limit=10&campaignId=${campaignId}&search=${placementName}`)
+            cy.route(`api/v1/placements?sort_order=desc&sort_by=id&page=0&limit=*&campaignId=${campaignId}&search=${placementName}`)
                 .as('searchAPI');
+
             cy.visit(`/campaigns/${campaignId}`);
             cy.get('[placeholder="Search"]', { timeout: 2000 }).type(placementName).wait('@searchAPI'); // adding wait for api return results
             

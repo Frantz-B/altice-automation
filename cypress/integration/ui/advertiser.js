@@ -30,11 +30,14 @@ context('Advertiser', () => {
         };
         
         it('Create an Advertiser', () => {
+            cy.server();
+            cy.route('POST', '/api/v1/advertisers').as('advertiserCreation')
+            
             cy.visit('');
             cy.get('[mattooltip="Create new Advertiser"]').click(); // clicking on create advertiser button
             cy.get('[placeholder="Enter Name"]').click().type(advertiserName); // click() needed ensure stability of test
             cy.get('[placeholder="Enter External ID"]').type(externalId); 
-            cy.get('[mattooltip="Save changes"]').click().wait(1000);
+            cy.get('[mattooltip="Save changes"]').click().wait('@advertiserCreation').its('status').should('eq', 200);
             cy.url().should('include', '/advertisers/'); 
             cy.location().then((currentLocation) => {
                 const urlPathName = currentLocation.pathname;
@@ -44,7 +47,8 @@ context('Advertiser', () => {
         
         it('Verify elements of Previously Created Advertiser', () => {
             cy.server();
-            cy.route(`api/v1/advertisers?sort_order=desc&sort_by=id&page=0&limit=10&search=${advertiserName}`).as('searchAPI');
+            cy.route(`api/v1/advertisers?sort_order=desc&sort_by=id&page=0&limit=*&search=${advertiserName}`).as('searchAPI');
+            
             cy.visit('');
             cy.get('[placeholder="Search"]', { timeout: 2000 }).type(advertiserName).wait('@searchAPI'); // adding wait for api return results
             cy.get('[mattooltip="View advertiser"]').click();  // Click on View Advertiser button on the 1st row 
@@ -56,8 +60,7 @@ context('Advertiser', () => {
             cy.log('Verifies Political is NOT checked');
             cy.get('div:nth-child(4) > i').should('have.class', 'fa fa-minus');  // verifies Political is NOT checked 
             cy.log('Verifies External ID');
-            cy.get('div.col-sm-2.col-lg-3.margin-bottom-10-mobile > ul > li:nth-child(2)').should('contain', externalId);  // verifies External ID 
-            
+            cy.get('div.col-sm-2.col-lg-3.margin-bottom-10-mobile > ul > li:nth-child(2)').should('contain', externalId);  // verifies External ID  
         });
         
         it('Edit Advertiser to make it Political', () => {

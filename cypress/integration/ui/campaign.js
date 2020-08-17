@@ -70,18 +70,15 @@ context('Campaign', () => {
         
         it('Verify elements of Previously Created Campaign', () => {
             cy.server();
-            cy.route(`api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&advertiserId=${advertiserId}&search=${campaignName}`)
+            cy.route(`/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=*&advertiserId=${advertiserId}&search=${campaignName}`)
                 .as('searchAPI');
+
             cy.visit(`/advertisers/${advertiserId}`);
             cy.get('[placeholder="Search"]', { timeout: 2000 }).type(campaignName).wait('@searchAPI'); // adding wait for api return results
             
             // Verifying list of results on Advertiser detail page
             cy.log('Verifies Campaign Name');
             cy.get('[mattooltip="View campaign"]').should('contain', campaignName);  // verifies Name of Campaign
-            cy.log('Verifies IO Number');
-            cy.get('.mat-cell.cdk-column-ioNumber').should('contain', ioNumber);  // verifies IO Number of Campaign
-            cy.log('Verifies External ID');
-            cy.get('mat-cell.cdk-column-externalId').should('contain', externalId);  // verifies External ID of Campaign
             cy.log('Verifies Traffiker');
             cy.get('.mat-cell.cdk-column-traffickerName').should('contain', trafficker);  // verifies Traffiker of Campaign
             cy.log('Verifies Contract Date');
