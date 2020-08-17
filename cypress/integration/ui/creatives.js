@@ -137,18 +137,20 @@ context('Creative', () => {
         });
 
         it('Update VAST Video Creative', () => {
+            cy.server();
+            cy.route('/api/v1/creatives/*').as('creativeDetailPage');
+
             creative.name += '-update';
             creative.vastXml += '.update.qa';
 
             cy.visit(`/creatives/${creative.id}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Creative button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Creative option
-            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name); 
+            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name, { force: true }); 
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button
             cy.get('.mat-input-element.mat-form-field-autofill-control.ng-pristine').clear({ force: true }).type(creative.vastXml); // edit the creative XML field.
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button.
-            cy.get('[data-ktwizard-type="action-submit"]').click();  // Submitting the Creative Info for update
-            cy.get('.kt-subheader__title').should('be.visible').should('contain', creative.name);
+            cy.get('[data-ktwizard-type="action-submit"]').click().wait('@creativeDetailPage').its('status').should('eq', 200);  // Submitting the Creative Info for creation
         });
 
         it('Verify updated Video Creative on Placement Lvl table', () => {
@@ -191,6 +193,7 @@ context('Creative', () => {
         });
 
         it('Verify the Vidoe Creative is archived in UI', () => {
+            cy.visit(`/creatives/${creative.id}`);
             cy.get('.kt-subheader__title', { timeout: 8000 }).should('contain', creative.name); // verifies Title
             cy.log('Verifies the archived Creative icon');
             cy.get('[class="fas fa-archive"]').should('be.visible'); // verify the archive icon is displaying.
@@ -261,18 +264,20 @@ context('Creative', () => {
         });
 
         it('Update created Banner Creative', () => {
+            cy.server();
+            cy.route('/api/v1/creatives/*').as('creativeDetailPage');
+
             creative.name += '-update';
             creative.html += '.update.qa';
 
             cy.visit(`/creatives/${creative.id}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Creative button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Creative option
-            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name); 
+            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name, { force: true }); 
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button
             cy.get('.mat-input-element.mat-form-field-autofill-control.ng-pristine').clear({ force: true }).type(creative.html); // edit the creative XML field.
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button.
-            cy.get('[data-ktwizard-type="action-submit"]').click();  // Submitting the Creative Info for update
-            cy.get('.kt-subheader__title').should('be.visible').should('contain', creative.name);
+            cy.get('[data-ktwizard-type="action-submit"]').click().wait('@creativeDetailPage').its('status').should('eq', 200);  // Submitting the Creative Info for creation
         });
 
         it('Verify updated Banner Creative on Line-Item Lvl table.', () => {
@@ -314,6 +319,7 @@ context('Creative', () => {
         });
 
         it('Verify the Banner Creative is archived in UI', () => {
+            cy.visit(`/creatives/${creative.id}`);
             cy.get('.kt-subheader__title', { timeout: 8000 }).should('contain', creative.name); // verifies Title
             cy.log('Verifies the archived Creative icon');
             cy.get('[class="fas fa-archive"]').should('be.visible'); // verify the archive icon is displaying.
