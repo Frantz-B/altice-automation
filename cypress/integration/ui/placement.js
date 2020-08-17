@@ -53,8 +53,8 @@ context('Placement', () => {
 
         it('Create a Placement', () => {
             cy.visit(`/campaigns/${campaignId}`);
-            cy.get('[mattooltip="Create new Placement"]').click(); // clicking on create campaign button
-            cy.get('[placeholder="Enter Name"]').click().type(placementName); // click() needed ensure stability of test
+            cy.get('[mattooltip="Create new Placement"]', { timeout: 8000 }).click(); // clicking on create campaign button
+            cy.get('[placeholder="Enter Name"]').click().type(placementName, { force: true }); // Force true needed to ensure string is fully typed
             cy.get('[placeholder="Enter Rate"]').type(rate); 
             cy.get('[placeholder="Deal Type"]').click(); // selecting Rate Unit
             cy.get('[value="CPM"]').click(); // selecting CPM for the rate type
@@ -73,11 +73,11 @@ context('Placement', () => {
                 .as('searchAPI');
 
             cy.visit(`/campaigns/${campaignId}`);
-            cy.get('[placeholder="Search"]', { timeout: 2000 }).type(placementName).wait('@searchAPI'); // adding wait for api return results
+            cy.get('[placeholder="Search"]', { timeout: 8000 }).type(placementName).wait('@searchAPI'); // adding wait for api return results
             
             // Verifying list of results on Campaign detail page
             cy.log('Verifies Placement Name');
-            cy.get('[mattooltip="View placement"]').should('contain', placementName);  // verifies Name of Placement
+            cy.get('[mattooltip="View placement"]', { timeout: 8000 }).should('contain', placementName);  // verifies Name of Placement
             cy.log('Verifies Rate');
             cy.get('mat-cell.cdk-column-rate').should('contain', rate + '.00');  // verifies Rate of Placement
             cy.log('Verifies Rate Unit Type');
@@ -102,7 +102,7 @@ context('Placement', () => {
             impressionGoal += 7000
 
             cy.visit(`/placements/${placementId}`);
-            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Placement button
+            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Placement button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Placement option
             cy.get('[placeholder="Enter Name"]').clear({ force: true }).type(placementName); 
             cy.get('[placeholder="Enter Rate"]').clear({ force: true }).type(rate); 
@@ -113,7 +113,7 @@ context('Placement', () => {
 
         it('Verify elements of Previously Edited Placements on its Detail Page', () => {
             cy.visit(`/placements/${placementId}`);
-            cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', placementName);  // verifies Title 
+            cy.get('[class="kt-subheader__title ng-star-inserted"]', { timeout: 8000 }).should('contain', placementName);  // verifies Title 
             cy.log('Verifies Rate on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(1)').first().should('contain', rate + '.00');  // verifies Rate on Placement Detail page 
             cy.log('Verifies Rate Unit Type on Placement Detail page');

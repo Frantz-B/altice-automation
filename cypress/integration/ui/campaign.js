@@ -54,8 +54,8 @@ context('Campaign', () => {
 
         it('Create a Campaign', () => {
             cy.visit(`/advertisers/${advertiserId}`);
-            cy.get('[mattooltip="Create new Campaign"]').click(); // clicking on create campaign button
-            cy.get('[placeholder="Enter Name"]').click().type(campaignName); // click() needed ensure stability of test
+            cy.get('[mattooltip="Create new Campaign"]', { timeout: 8000 }).click(); // clicking on create campaign button
+            cy.get('[placeholder="Enter Name"]').click().type(campaignName, { force: true }); // Force true needed to ensure full string is typed
             cy.get('[placeholder="Enter Trafficker Name"]').type(trafficker); 
             cy.get('[placeholder="Choose a Contract Date"]').type(contractDate);
             cy.get('[placeholder="Enter IO Number"]').type(ioNumber);
@@ -70,15 +70,15 @@ context('Campaign', () => {
         
         it('Verify elements of Previously Created Campaign', () => {
             cy.server();
-            cy.route(`/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=*&advertiserId=${advertiserId}&search=${campaignName}`)
+            cy.route(`/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=*&advertiserId=*&search=${campaignName}`)
                 .as('searchAPI');
 
             cy.visit(`/advertisers/${advertiserId}`);
-            cy.get('[placeholder="Search"]', { timeout: 2000 }).type(campaignName).wait('@searchAPI'); // adding wait for api return results
+            cy.get('[placeholder="Search"]', { timeout: 8000 }).type(campaignName).wait('@searchAPI'); // adding wait for api return results
             
             // Verifying list of results on Advertiser detail page
             cy.log('Verifies Campaign Name');
-            cy.get('[mattooltip="View campaign"]').should('contain', campaignName);  // verifies Name of Campaign
+            cy.get('[mattooltip="View campaign"]', { timeout: 8000 }).should('contain', campaignName);  // verifies Name of Campaign
             cy.log('Verifies Traffiker');
             cy.get('.mat-cell.cdk-column-traffickerName').should('contain', trafficker);  // verifies Traffiker of Campaign
             cy.log('Verifies Contract Date');
@@ -106,7 +106,7 @@ context('Campaign', () => {
             contractDate = Cypress.moment().subtract(1, 'days').format('l'); 
 
             cy.visit(`/campaigns/${campaignID}`);
-            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Campaign button
+            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Campaign button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit campaign option
             cy.get('[placeholder="Enter Name"]').clear({ force: true }).type(campaignName); 
             cy.get('[placeholder="Enter Trafficker Name"]').clear({ force: true }).type(trafficker); 
@@ -121,7 +121,7 @@ context('Campaign', () => {
             contractDate = Cypress.moment().subtract(1, 'days').format('ll'); 
             
             cy.visit(`/campaigns/${campaignID}`);
-            cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', campaignName);  // verifies Title 
+            cy.get('[class="kt-subheader__title ng-star-inserted"]', { timeout: 8000 }).should('contain', campaignName);  // verifies Title 
             cy.log('Verifies External ID on Campaign Detail page');
             cy.get('div.col-md-7 > ul > li:nth-child(1)').should('contain', externalId);  // verifies External ID on Campaign Detail page 
             cy.log('Verifies Traffikcer Name on Campaign Detail page');

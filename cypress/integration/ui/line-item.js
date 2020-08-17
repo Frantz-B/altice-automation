@@ -60,9 +60,10 @@ context('Line-Item', () => {
         it('Create a Line-Item', () => {
             cy.server();
             cy.route(`/api/v1/placements/${placementId}`).as('placementPageLoad');
+
             cy.visit(`/placements/${placementId}`).wait('@placementPageLoad');
             cy.get('[mattooltip="Create new Line Item"]').click(); // clicking on create Line-item button
-            cy.get('[placeholder="Enter Name"]').first().click().type(lineItemName); // clicking on the field for Line-item name
+            cy.get('[placeholder="Enter Name"]').first().click().type(lineItemName, { force: true }); // Force true needed to ensure full string is typed
             cy.get('[placeholder="Enter Name"]').last().click().type(impressionGoal); // clicking on the field for Impression Goal
             cy.get('[placeholder="Choose a Start Date"]').clear().type(startDate);
             cy.get('[placeholder="Choose a End Date"]').clear().type(endDate);
@@ -78,12 +79,13 @@ context('Line-Item', () => {
             cy.server();
             cy.route(`/api/v1/line-items?sort_order=desc&sort_by=id&page=0&limit=*&placementId=${placementId}&search=${lineItemName}`)
                 .as('searchAPI');
+    
             cy.visit(`/placements/${placementId}`);
-            cy.get('[placeholder="Search"]', { timeout: 2000 }).first().type(lineItemName).wait('@searchAPI'); // adding wait for api return results
+            cy.get('[placeholder="Search"]', { timeout: 8000 }).first().type(lineItemName).wait('@searchAPI'); // adding wait for api return results
             
             // Verifying list of results on Campaign detail page
             cy.log('Verifies Line-Item Name');
-            cy.get('[mattooltip="View line item"]').should('contain', lineItemName);  // verifies Name of Line-Item
+            cy.get('[mattooltip="View line item"]', { timeout: 8000 }).should('contain', lineItemName);  // verifies Name of Line-Item
             cy.log('Verifies Status');
             cy.get('mat-cell.cdk-column-status').should('contain', 'Creative Missing');  // When line-items are first created, it should be have Creative Missing status
             cy.log('Verifies Start Date');
@@ -113,7 +115,7 @@ context('Line-Item', () => {
             endDate = Cypress.moment(endDate).add(14, 'days').format('MM/DD/YYYY');
 
             cy.visit(`/line-items/${lineItemId}`);
-            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Line-Item button
+            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Line-Item button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Line-Item option
             cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(lineItemName);  // click on the field for Line-item name
             cy.get('[placeholder="Enter Name"]').last().clear({ force: true }).type(impressionGoal);  // clicking on the field for Line-item Impression Goal
@@ -125,7 +127,7 @@ context('Line-Item', () => {
 
         it('Verify elements of Previously Edited Line-items on its Detail Page', () => {
             cy.visit(`/line-items/${lineItemId}`);
-            cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', lineItemName);  // verifies Title 
+            cy.get('[class="kt-subheader__title ng-star-inserted"]', { timeout: 8000 }).should('contain', lineItemName);  // verifies Title 
             cy.log('Verifies Status on Line-Item Detail page');
             cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', 'DRAFT');  // verifies Status on Line-Item Detail page 
             cy.log('Verifies Start Date on Line-Item Detail page');
