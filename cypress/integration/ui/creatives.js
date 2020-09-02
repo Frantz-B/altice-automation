@@ -132,8 +132,18 @@ context('Creative', () => {
                 .should('contain', creative.vastXml)
                 .should('have.class', 'snippet-wrapper'); // make sure the snippet-wrapper is displaying.
             cy.log('Verifies Dimensions on Creative Detail page');
-            cy.get('li > span:nth-child(2)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
-            cy.get('li > span:nth-child(3)').should('contain', creative.height);  // verifies Height: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(1)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(2)').should('contain', creative.height);  // verifies Height: 300 on Creative Detail page
+
+            // Verifying icons are displaying in creative details page.
+            cy.log('Verifies Format icon is displayed');
+            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.log('Verifies Media Type icon is displayed');
+            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','burst_mode-24px.svg');  // verifies Media Type icon is displayed
+            cy.log('Verifies Snippet UUID icon is displayed');
+            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
+            cy.log('Verifies Dimensions icon is displayed');
+            cy.get('div.col-sm-7.margin-bottom-10-mobile > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
         it('Update VAST Video Creative', () => {
@@ -182,8 +192,18 @@ context('Creative', () => {
                 .should('contain', creative.vastXml)
                 .should('have.class', 'snippet-wrapper'); // make sure the snippet-wrapper is displaying.
             cy.log('Verifies Dimensions on Creative Detail page');
-            cy.get('li > span:nth-child(2)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
-            cy.get('li > span:nth-child(3)').should('contain', creative.height);  // verifies Height: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(1)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(2)').should('contain', creative.height);  // verifies Height: 300 on Creative Detail page
+
+            // Verifying icons are displaying in creative details page.
+            cy.log('Verifies Format icon is displayed');
+            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.log('Verifies Media Type icon is displayed');
+            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','burst_mode-24px.svg');  // verifies Media Type icon is displayed
+            cy.log('Verifies Snippet UUID icon is displayed');
+            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
+            cy.log('Verifies Dimensions icon is displayed');
+            cy.get('div.col-sm-7.margin-bottom-10-mobile > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
                // Archive the created creative 
@@ -259,8 +279,18 @@ context('Creative', () => {
                 .should('contain', creative.html)
                 .should('have.class', 'snippet-wrapper'); // make sure the snippet-wrapper is displaying.
             cy.log('Verifies Dimensions on Creative Detail page');
-            cy.get('li > span:nth-child(2)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
-            cy.get('li > span:nth-child(3)').should('contain', creative.height);  // verifies Height: 250 on Creative Detail page
+            cy.get('li > div > span:nth-child(1)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(2)').should('contain', creative.height);  // verifies Height: 250 on Creative Detail page
+
+            // Verifying icons are displaying in creative details page.
+            cy.log('Verifies Format icon is displayed');
+            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.log('Verifies Media Type icon is displayed');
+            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','burst_mode-24px.svg');  // verifies Media Type icon is displayed
+            cy.log('Verifies Snippet UUID icon is displayed');
+            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
+            cy.log('Verifies Dimensions icon is displayed');
+            cy.get('div.col-sm-7.margin-bottom-10-mobile > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
         it('Update created Banner Creative', () => {
@@ -309,8 +339,18 @@ context('Creative', () => {
                 .should('contain', creative.html)
                 .should('have.class', 'snippet-wrapper'); // make sure the snippet-wrapper is displaying.
             cy.log('Verifies Dimensions on Creative Detail page');
-            cy.get('li > span:nth-child(2)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
-            cy.get('li > span:nth-child(3)').should('contain', creative.height);  // verifies Height: 250 on Creative Detail page
+            cy.get('li > div > span:nth-child(1)').should('contain', creative.width);  // verifies Width: 300 on Creative Detail page
+            cy.get('li > div > span:nth-child(2)').should('contain', creative.height);  // verifies Height: 250 on Creative Detail page
+
+            // Verifying icons are displaying in creative details page.
+            cy.log('Verifies Format icon is displayed');
+            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.log('Verifies Media Type icon is displayed');
+            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','burst_mode-24px.svg');  // verifies Media Type icon is displayed
+            cy.log('Verifies Snippet UUID icon is displayed');
+            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
+            cy.log('Verifies Dimensions icon is displayed');
+            cy.get('div.col-sm-7.margin-bottom-10-mobile > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
  
         it('Archive Banner Creative', () => {

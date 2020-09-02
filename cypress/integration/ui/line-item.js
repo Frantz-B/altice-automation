@@ -83,15 +83,15 @@ context('Line-Item', () => {
             cy.visit(`/placements/${placementId}`);
             cy.get('[placeholder="Search"]', { timeout: 8000 }).first().type(lineItemName).wait('@searchAPI'); // adding wait for api return results
             
-            // Verifying list of results on Campaign detail page
+            // Verifying list of results on placement detail page
             cy.log('Verifies Line-Item Name');
             cy.get('[mattooltip="View line item"]', { timeout: 8000 }).should('contain', lineItemName);  // verifies Name of Line-Item
             cy.log('Verifies Status');
             cy.get('mat-cell.cdk-column-status').should('contain', 'Creative Missing');  // When line-items are first created, it should be have Creative Missing status
             cy.log('Verifies Start Date');
-            cy.get('mat-cell.cdk-column-startFlightDate').should('contain', startDate.slice(1, -2));  // verifies Start Date of Line-Item
+            cy.get('mat-cell.cdk-column-startFlightDate').should('contain', startDate.slice(1, +2));  // verifies Start Date of Line-Item
             cy.log('Verifies End Date');
-            cy.get('mat-cell.cdk-column-endFlightDate').should('contain', endDate.slice(1, -2));  // verifies End Date of Line-Item
+            cy.get('mat-cell.cdk-column-endFlightDate').should('contain', endDate.slice(1, +2));  // verifies End Date of Line-Item
             cy.log('Verifies the Format');  // Below will have to change to toggle in future
             cy.get('mat-cell.cdk-column-format').should('contain', 'Banner');  // verifies Rate Unit Type of Line-Item
             
@@ -106,6 +106,22 @@ context('Line-Item', () => {
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(endDate).format('ll'));  // verifies End Date on Line-Item Detail page 
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', 'Banner');  // verifies Format on Line-Item Detail page 
+
+            // Verfying icons in line item detail page 
+            cy.log('Verifies Status icon is displayed');
+            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+            cy.log('Verifies Format icon is displayed');
+            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.log('Verifies Creative Rotation icon is displayed');
+            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
+            cy.log('Verifies Start Date icon is displayed');
+            cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
+            cy.log('Verifies End Date icon is displayed');
+            cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
+            cy.log('Verifies Impressions icon is displayed');
+            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.log('Verifies Goal icon is displayed');
+            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
         
         it('Edit Line-Item', () => {
@@ -136,6 +152,22 @@ context('Line-Item', () => {
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(endDate).format('ll'));  // verifies End Date on Line-Item Detail page 
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', 'Banner');  // verifies Format on Line-Item Detail page 
+
+             // Verfying icons in line item detail page 
+             cy.log('Verifies Status icon is displayed');
+             cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+             cy.log('Verifies Format icon is displayed');
+             cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+             cy.log('Verifies Creative Rotation icon is displayed');
+             cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
+             cy.log('Verifies Start Date icon is displayed');
+             cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
+             cy.log('Verifies End Date icon is displayed');
+             cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
+             cy.log('Verifies Impressions icon is displayed');
+             cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+             cy.log('Verifies Goal icon is displayed');
+             cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
     });
 });
