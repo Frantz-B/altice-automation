@@ -98,17 +98,17 @@ context('Campaign', () => {
             cy.get('div:nth-child(2) > ul > li:nth-child(2) > div').should('contain', contractDate);  // verifies Contract Date on Campaign Detail page 
             cy.log('Verifies campaign detail page icons are displayed');
             cy.log('Verifies External ID icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
             cy.log('Verifies Trafficker Name icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','person-24px.svg');  // verifies Trafficker Name icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','person-24px.svg');  // verifies Trafficker Name icon is displayed
             cy.log('Verifies IO Number icon is displayed');
-            cy.get('div.col-sm-4.col-lg-5.margin-bottom-10-mobile > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','login-24px.svg');  // verifies IO Number icon is displayed
+            cy.get('.col-lg-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','login-24px.svg');  // verifies IO Number icon is displayed
             cy.log('Verifies Contract Date icon is displayed');
-            cy.get('div.col-sm-4.col-lg-5.margin-bottom-10-mobile > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
+            cy.get('.col-lg-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
-            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
         
         it('Edit Campaign', () => {
@@ -145,17 +145,17 @@ context('Campaign', () => {
             cy.get('div:nth-child(2) > ul > li:nth-child(2) > div').should('contain', contractDate);  // verifies Contract Date on Campaign Detail page 
             cy.log('Verifies campaign detail page icons are displayed');
             cy.log('Verifies External ID icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
             cy.log('Verifies Trafficker Name icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','person-24px.svg');  // verifies Trafficker Name icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','person-24px.svg');  // verifies Trafficker Name icon is displayed
             cy.log('Verifies IO Number icon is displayed');
-            cy.get('div.col-sm-4.col-lg-5.margin-bottom-10-mobile > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','login-24px.svg');  // verifies IO Number icon is displayed
+            cy.get('.col-lg-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','login-24px.svg');  // verifies IO Number icon is displayed
             cy.log('Verifies Contract Date icon is displayed');
-            cy.get('div.col-sm-4.col-lg-5.margin-bottom-10-mobile > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
+            cy.get('.col-lg-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
-            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
     });
 });
