@@ -97,17 +97,17 @@ context('Placement', () => {
             
             //  Vreifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
             cy.log('Verifies Rate Unit icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
             cy.log('Verifies Flight Dates icon is displayed');
-            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
             cy.log('Verifies Impression Goal icon is displayed');
-            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
+            cy.get('div.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
-            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
         
         it('Edit Placement', () => {
@@ -137,17 +137,17 @@ context('Placement', () => {
 
             //  Vreifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
             cy.log('Verifies Rate Unit icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
             cy.log('Verifies Flight Dates icon is displayed');
-            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
             cy.log('Verifies Impression Goal icon is displayed');
-            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
+            cy.get('.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
-            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
     });
 });
