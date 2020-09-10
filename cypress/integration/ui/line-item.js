@@ -109,19 +109,19 @@ context('Line-Item', () => {
 
             // Verfying icons in line item detail page 
             cy.log('Verifies Status icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
             cy.log('Verifies Format icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
             cy.log('Verifies Creative Rotation icon is displayed');
-            cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
+            cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
             cy.log('Verifies Start Date icon is displayed');
-            cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
+            cy.get('div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
             cy.log('Verifies End Date icon is displayed');
-            cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
+            cy.get('div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
-            cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
         
         it('Edit Line-Item', () => {
@@ -155,19 +155,19 @@ context('Line-Item', () => {
 
              // Verfying icons in line item detail page 
              cy.log('Verifies Status icon is displayed');
-             cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+             cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
              cy.log('Verifies Format icon is displayed');
-             cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
+             cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','ad_units-24px.svg');  // verifies Format icon is displayed
              cy.log('Verifies Creative Rotation icon is displayed');
-             cy.get('ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
+             cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','track_changes-24px.svg');  // verifies Creative Rotation icon is displayed
              cy.log('Verifies Start Date icon is displayed');
-             cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
+             cy.get('div:nth-child(2) > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Start Date icon is displayed
              cy.log('Verifies End Date icon is displayed');
-             cy.get('div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
+             cy.get('div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
              cy.log('Verifies Impressions icon is displayed');
-             cy.get('kt-pacing-full > div > div.title-row.justify-content-between > h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+             cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
              cy.log('Verifies Goal icon is displayed');
-             cy.get('div.title-row.justify-content-between > span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
     });
 });
