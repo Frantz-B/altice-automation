@@ -24,14 +24,14 @@ context('Advertiser', () => {
             
             cy.visit('');
             cy.get('[mattooltip="Create new Advertiser"]').click(); // clicking on create advertiser button
-            cy.get('[placeholder="Enter Name"]').click().type(advertiserName, { force: true }); // force true needed ensure stability of test
+            cy.get('[placeholder="Enter Name"]').click().type(advertiserName, { force: true }); // force true needed ensure full string is typed
             cy.get('[placeholder="Enter External ID"]').type(externalId); 
             cy.get('[mattooltip="Save changes"]').click().wait('@advertiserCreation').its('status').should('eq', 200);
             cy.url().should('include', '/advertisers/'); 
             cy.location().then((currentLocation) => {
                 const urlPathName = currentLocation.pathname;
                 advertiserID = urlPathName.split('/').pop(); // Grabbing Deal ID from URL
-              });
+            });
         });
         
         it('Verify elements of Previously Created Advertiser', () => {
@@ -43,17 +43,17 @@ context('Advertiser', () => {
             cy.get('[mattooltip="View advertiser"]').click();  // Click on View Advertiser button on the 1st row 
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', advertiserName);  // verifies title 
             cy.log('Verifies Active is checked');
-            cy.get('ul > li:nth-child(1) > i').should('have.class', 'fa fa-check');  // verifies Active is checked 
+            cy.get('li:nth-child(1) > i').should('have.class', 'fa fa-check');  // verifies Active is checked 
             cy.log('Verifies Approved is checked');
-            cy.get('li:nth-child(1) > ul > li:nth-child(2) > i').should('have.class', 'fa fa-check');  // verifies Approved is checked 
+            cy.get('li:nth-child(2) > i').should('have.class', 'fa fa-check');  // verifies Approved is checked 
             cy.log('Verifies Political is NOT checked');
-            cy.get('ul > li:nth-child(3) > i').should('have.class', 'fa fa-minus');  // verifies Political is NOT checked 
+            cy.get('li:nth-child(3) > i').should('have.class', 'fa fa-minus');  // verifies Political is NOT checked 
             cy.log('Verifies External ID');
-            cy.get('div.col-sm-2.col-lg-3.margin-bottom-10-mobile > ul > li:nth-child(2)').should('contain', externalId);  // verifies External ID  
+            cy.get('[class="data-point ng-star-inserted"]').should('contain', externalId);  // verifies External ID  
             cy.log('Verifies Status icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
             cy.log('Verifies External ID icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
         });
         
         it('Edit Advertiser to make it Political', () => {
@@ -76,17 +76,17 @@ context('Advertiser', () => {
             cy.visit(`/advertisers/${advertiserID}`);
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', advertiserName);  // verifies title 
             cy.log('Verifies Active is checked');
-            cy.get('ul > li:nth-child(1) > i').should('have.class', 'fa fa-check');  // verifies Active is checked 
+            cy.get('li:nth-child(1) > i').should('have.class', 'fa fa-check');  // verifies Active is checked 
             cy.log('Verifies Approved is checked');
-            cy.get('li:nth-child(1) > ul > li:nth-child(2) > i').should('have.class', 'fa fa-minus');  // verifies Approved is checked 
+            cy.get('li:nth-child(2) > i').should('have.class', 'fa fa-minus');  // verifies Approved is checked 
             cy.log('Verifies Political is NOT checked');
-            cy.get('ul > li:nth-child(3) > i').should('have.class', 'fa fa-check');  // verifies Political is NOT checked 
+            cy.get('li:nth-child(3) > i').should('have.class', 'fa fa-check');  // verifies Political is NOT checked 
             cy.log('Verifies External ID');
-            cy.get('div.col-sm-2.col-lg-3.margin-bottom-10-mobile > ul > li:nth-child(2)').should('contain', externalId);  // verifies External ID 
+            cy.get('[class="data-point ng-star-inserted"]').should('contain', externalId);  // verifies External ID 
             cy.log('Verifies Status icon is displayed');
-            cy.get('ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies Status icon is displayed
             cy.log('Verifies External ID icon is displayed');
-            cy.get('ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies External ID icon is displayed
         });
     });
 });
