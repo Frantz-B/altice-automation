@@ -85,7 +85,7 @@ context('Placement', () => {
             cy.log('Verifies Impression Goal');
             cy.get('.mat-cell.cdk-column-impressionGoal').should('contain', Intl.NumberFormat().format(impressionGoal));  // verifies Impression Goal of Placement
             
-            //  Verifying Placement Detail Page
+            //  Vreifying Placement Detail Page
             cy.get('[mattooltip="View placement"]').click();  // Clicks on Placement from Advertiser page
             cy.get('[class="kt-subheader__title ng-star-inserted"]').should('contain', placementName);  // verifies Title 
             cy.log('Verifies Rate on Placement Detail page');
@@ -94,6 +94,20 @@ context('Placement', () => {
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM');  // verifies Rate Unit Type on Placement Detail page 
             cy.log('Verifies Impression Goal on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(impressionGoal));  // verifies Impression Goal on Placement Detail page 
+            
+            //  Vreifying Placement detail page icons
+            cy.log('Verifies Rate icon is displayed');
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
+            cy.log('Verifies Rate Unit icon is displayed');
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
+            cy.log('Verifies Flight Dates icon is displayed');
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
+            cy.log('Verifies Impression Goal icon is displayed');
+            cy.get('div.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
+            cy.log('Verifies Impressions icon is displayed');
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.log('Verifies Goal icon is displayed');
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
         
         it('Edit Placement', () => {
@@ -120,6 +134,20 @@ context('Placement', () => {
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM');  // verifies Rate Unit Type on Placement Detail page 
             cy.log('Verifies Impression Goal on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(impressionGoal));  // verifies Impression Goal on Placement Detail page 
+
+            //  Vreifying Placement detail page icons
+            cy.log('Verifies Rate icon is displayed');
+            cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
+            cy.log('Verifies Rate Unit icon is displayed');
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','trending_up-24px.svg');  // verifies Rate Unit icon is displayed
+            cy.log('Verifies Flight Dates icon is displayed');
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','date_range-24px.svg');  // verifies Flight Dates icon is displayed
+            cy.log('Verifies Impression Goal icon is displayed');
+            cy.get('.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Impression Goal icon is displayed
+            cy.log('Verifies Impressions icon is displayed');
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.log('Verifies Goal icon is displayed');
+            cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
     });
 });
