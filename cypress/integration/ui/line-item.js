@@ -119,7 +119,7 @@ context('Line-Item', () => {
             cy.log('Verifies End Date icon is displayed');
             cy.get('div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
@@ -165,7 +165,7 @@ context('Line-Item', () => {
              cy.log('Verifies End Date icon is displayed');
              cy.get('div:nth-child(2) > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','event-24px.svg');  // verifies End Date icon is displayed
              cy.log('Verifies Impressions icon is displayed');
-             cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+             cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
              cy.log('Verifies Goal icon is displayed');
              cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });

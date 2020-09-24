@@ -106,7 +106,7 @@ context('Campaign', () => {
             cy.log('Verifies Contract Date icon is displayed');
             cy.get('.col-lg-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
@@ -153,7 +153,7 @@ context('Campaign', () => {
             cy.log('Verifies Contract Date icon is displayed');
             cy.get('.col-lg-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include','today-24px.svg');  // verifies Contract Date icon is displayed
             cy.log('Verifies Impressions icon is displayed');
-            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility-24px.svg');  // verifies Impressions icon is displayed
+            cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
         });
