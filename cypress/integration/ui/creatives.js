@@ -17,7 +17,6 @@ context('Creative', () => {
 
         const creative = {};
 
-
         // create CRUD test
         it('Retrieve Placement to select as Parent', () => {
             const lastCreatedPlacement = Cypress.moment().format('YY.');
@@ -143,7 +142,7 @@ context('Creative', () => {
             cy.log('Verifies Snippet UUID icon is displayed');
             cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
             cy.log('Verifies Dimensions icon is displayed');
-            cy.get('.col-sm-7 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
+            cy.get('.col-md-6 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
         it('Update VAST Video Creative', () => {
@@ -203,7 +202,7 @@ context('Creative', () => {
             cy.log('Verifies Snippet UUID icon is displayed');
             cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
             cy.log('Verifies Dimensions icon is displayed');
-            cy.get('.col-sm-7 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
+            cy.get('.col-md-6 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
                // Archive the created creative 
@@ -290,7 +289,7 @@ context('Creative', () => {
             cy.log('Verifies Snippet UUID icon is displayed');
             cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
             cy.log('Verifies Dimensions icon is displayed');
-            cy.get('.col-sm-7 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
+            cy.get('.col-md-6 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
         it('Update created Banner Creative', () => {
@@ -350,7 +349,7 @@ context('Creative', () => {
             cy.log('Verifies Snippet UUID icon is displayed');
             cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include','fingerprint-24px.svg');  // verifies Snippet UUID icon is displayed
             cy.log('Verifies Dimensions icon is displayed');
-            cy.get('.col-sm-7 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
+            cy.get('.col-md-6 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
  
         it('Archive Banner Creative', () => {
