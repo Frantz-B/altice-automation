@@ -5,7 +5,7 @@ context('Advertiser', () => {
     describe('Advertiser UI', () => {
         let userTokenResponse;
 
-        before(  () => {
+        before(() => {
             userTokenResponse =  retrieveUserToken();  //logs in and returns token
         });
         beforeEach(async () => {
@@ -57,7 +57,10 @@ context('Advertiser', () => {
         });
         
         it('Edit Advertiser to make it Political', () => {
-            advertiserName += '-update'
+            cy.server();
+            cy.route('PUT', '/api/v1/advertisers/*').as('editAdvertiser');
+
+            advertiserName += '-Political'
             externalId += '!!'
             cy.visit(`/advertisers/${advertiserID}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on edit advertiser button
@@ -69,7 +72,8 @@ context('Advertiser', () => {
             cy.get('[role="switch"]').click({ force: true }); // Toggle for turning on Political
             cy.get('#mat-select-1').click({ force: true }); // Dropdown for 'Federal' or 'State/local'
             cy.get('[class="mat-option-text"]').first().click({ force: true });  // Selecting Federal
-            cy.get('[mattooltip="Save changes"]').click(); 
+            cy.get('[type="checkbox"]').last().click({ force: true });  // Adding check to required checkbox
+            cy.get('[mattooltip="Save changes"]').click().wait('@editAdvertiser').its('status').should('eq', 200); 
         });
 
         it('Verify elements of Previously Created Political Advertiser', () => {
