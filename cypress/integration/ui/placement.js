@@ -108,6 +108,8 @@ context('Placement', () => {
             cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.log('Verifies Target Spend icon is displayed');
+            cy.get('label > kt-icon > img').should('have.attr', 'src').should('include','target_spend-24px.svg');  // verifies target spend icon is displayed
         });
         
         it('Edit Placement', () => {
@@ -148,6 +150,8 @@ context('Placement', () => {
             cy.get('h6 > i > img').should('have.attr', 'src').should('include','visibility_dark-24px.svg');  // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include','emoji_events-24px.svg');  // verifies Goal icon is displayed
+            cy.log('Verifies Target Spend icon is displayed');
+            cy.get('label > kt-icon > img').should('have.attr', 'src').should('include','target_spend-24px.svg');  // verifies target spend icon is displayed
         });
     });
 });
