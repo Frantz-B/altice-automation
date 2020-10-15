@@ -60,7 +60,8 @@ context('Line-Item', () => {
             lineItem.impressionGoal = generateRandomNum(90000);
             lineItem.startDate = Cypress.moment().add(1, 'days').format('MM/DD/YYYY');
             lineItem.endDate = Cypress.moment().add(1, 'months').format('MM/DD/YYYY');
-            
+            lineItem.targetSpend = lineItem.impressionGoal * lineItem.placement.rate / 1000;
+
             cy.visit(`/placements/${lineItem.placement.id}`).wait('@placementPageLoad');
             cy.get('[mattooltip="Create new Line Item"]').click(); // clicking on create Line-item button
             cy.get('[placeholder="Enter Name"]').first().click().type(lineItem.name, { force: true }); // Force true needed to ensure full string is typed
@@ -106,8 +107,10 @@ context('Line-Item', () => {
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('ll'));  // verifies End Date on Line-Item Detail page 
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', 'Banner');  // verifies Format on Line-Item Detail page 
-            
-            // Verfying icons in line item detail page 
+            cy.log('Verifies Target Spend on Line-Item Detail page');
+            cy.get('div:nth-child(1) > ul > li:nth-child(4)').last().should('contain', Intl.NumberFormat().format(lineItem.targetSpend.toFixed(2)));  // verifies Target Spend on Line-Item Detail page 
+
+            // Verifying icons in line item detail page 
             cy.log('Verifies Status icon is displayed');
             cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
             cy.log('Verifies Format icon is displayed');
@@ -127,8 +130,9 @@ context('Line-Item', () => {
         });
         
         it('Edit Line-Item', () => {
-            lineItem.name += '-update'
-            lineItem.impressionGoal += 7000
+            lineItem.name += '-update';
+            lineItem.impressionGoal += 7000;
+            lineItem.targetSpend = lineItem.impressionGoal * lineItem.placement.rate / 1000;
             lineItem.endDate = Cypress.moment(lineItem.endDate).add(14, 'days').format('MM/DD/YYYY');
             lineItem.startDate = Cypress.moment(lineItem.startDate).add(1, 'days').format('MM/DD/YYYY');
 
@@ -154,7 +158,9 @@ context('Line-Item', () => {
             cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('ll'));  // verifies End Date on Line-Item Detail page 
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', 'Banner');  // verifies Format on Line-Item Detail page 
-            
+            cy.log('Verifies Target Spend on Line-Item Detail page');
+            cy.get('div:nth-child(1) > ul > li:nth-child(4)').last().should('contain', Intl.NumberFormat().format(lineItem.targetSpend.toFixed(2)));  // verifies Target Spend on Line-Item Detail page 
+
              // Verifying icons in line item detail page 
              cy.log('Verifies Status icon is displayed');
              cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','linear_scale-24px.svg');  // verifies status icon is displayed
