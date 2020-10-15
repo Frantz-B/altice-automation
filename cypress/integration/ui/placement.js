@@ -50,7 +50,8 @@ context('Placement', () => {
             placement.name = generateName('Placement');
             placement.rate = generateRandomNum(100);
             placement.impressionGoal = generateRandomNum(900000);
-            
+            placement.targetSpend = placement.impressionGoal * placement.rate / 1000;
+           
             cy.visit(`/campaigns/${placement.campaignId}`);
             cy.get('[mattooltip="Create new Placement"]', { timeout: 8000 }).click(); // clicking on create campaign button
             cy.get('[placeholder="Enter Name"]').click().type(placement.name, { force: true }); // Force true needed to ensure string is fully typed
@@ -93,6 +94,8 @@ context('Placement', () => {
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM');  // verifies Rate Unit Type on Placement Detail page 
             cy.log('Verifies Impression Goal on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(placement.impressionGoal));  // verifies Impression Goal on Placement Detail page 
+            cy.log('Verifies Target Spend on Placement Detail page');
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(3)').last().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2)));  // verifies Target Spend on Placement Detail page 
             
             //  Verifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
@@ -115,7 +118,8 @@ context('Placement', () => {
             placement.rate += 14;
             placement.name += '-update';
             placement.impressionGoal += 7000;
-            
+            placement.targetSpend = placement.impressionGoal * placement.rate / 1000;
+
             cy.visit(`/placements/${placement.id}`);
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Placement button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Placement option
@@ -135,7 +139,9 @@ context('Placement', () => {
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM');  // verifies Rate Unit Type on Placement Detail page 
             cy.log('Verifies Impression Goal on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(placement.impressionGoal));  // verifies Impression Goal on Placement Detail page 
-            
+            cy.log('Verifies Target Spend on Placement Detail page');
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(3)').last().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2)));  // verifies Target Spend on Placement Detail page 
+
             //  Verifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
             cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include','monetization_on-24px.svg');  // verifies Rate icon is displayed
