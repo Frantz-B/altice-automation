@@ -84,7 +84,7 @@ context('Creative', () => {
             creative.width = '300';
 
             cy.visit(`/placements/${creative.placementId}`);
-            cy.get('[mattooltip="Create new Creative"]').click(); // clicking on create new creative button
+            cy.get('[mattooltip="Create new Creative"]', { timeout: 8000 }).click(); // clicking on create new creative button
             cy.get('[placeholder="Enter Name"]').click().type(creative.name, { force: true }); // Force true need to cypress to type entire string consistently
             cy.get('[placeholder="Format"]').click(); // selecting Format
             cy.get('[class="mat-option"]').click(); // selecting video for the creative format.
@@ -205,13 +205,12 @@ context('Creative', () => {
             cy.get('.col-md-6 > ul > li > label > i > img').should('have.attr', 'src').should('include','aspect_ratio-24px.svg');  // verifies Dimensions icon is displayed
         });
 
-               // Archive the created creative 
         it('Archive VAST Video Creative', () => {
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Creative button
             cy.get('button:nth-child(2)').last().click(); // clicking on archive Creative option
         });
 
-        it('Verify the Vidoe Creative is archived in UI', () => {
+        it('Verify the Video Creative is archived in UI', () => {
             cy.visit(`/creatives/${creative.id}`);
             cy.get('.kt-subheader__title', { timeout: 8000 }).should('contain', creative.name); // verifies Title
             cy.log('Verifies the archived Creative icon');
@@ -227,20 +226,29 @@ context('Creative', () => {
 
             creative.name = generateName('Creative-lvl_Line-item');
             creative.html = 'https://Line_item-lvl-Creative.com';
-            creative.mediaType = 'Rich media';
-            creative.format = 'Banner';
-            creative.height = '250';
-            creative.width = '300';
-
+            
             cy.visit(`/line-items/${creative.lineItemId}`);
-            cy.get('[mattooltip="Create new Creative"]').click(); // clicking on create new creative button
+            cy.get('[mattooltip="Create new Creative"]', { timeout: 8000 }).click(); // clicking on create new creative button
             cy.get('[placeholder="Enter Name"]').click().type(creative.name, { force: true }); // Force true needed for cypress to type entire string
+            cy.get('[placeholder="Format"]').invoke('attr', 'aria-disabled').should('equal', 'true');  // Verifying Format field is disabled
+            // Below grabs the value of the selected Creative Format option
+            cy.get('#mat-select-1').invoke('text').then((creativeFormat) => {
+                creative.format = creativeFormat;
+            });
             cy.get('[placeholder="Creative Media Type"]').click(); // selecting Creative Media Type.
             cy.get('span[class="mat-option-text"]').eq(1).click(); // selecting  Rich Media as Creative Media Type.
+            // Below grabs the value of the selected Creative Media Type option
+            cy.get('#mat-select-2').invoke('text').then((creativeMediaTypeOption) => {
+                creative.mediaType = creativeMediaTypeOption;
+            });
             cy.get('div[data-ktwizard-type="action-next"]').click();  //click on Next-Step button.
             cy.get('.mat-input-element.mat-form-field-autofill-control.ng-pristine').type(creative.html); // fill the creative XML field.
-            cy.get('[placeholder="Dimensions"]').click(); // click to select dimensions.
-            cy.get('[class="mat-option ng-star-inserted mat-active"]').click(); // click to select dimensions 300 x 250.
+            cy.get('[placeholder="Dimensions"]').invoke('attr', 'aria-disabled').should('equal', 'true');  // Verifying Dimensions field is disabled
+            // Below grabs the value of the selected Creative Dimensions option
+            cy.get('#mat-select-3').invoke('text').then((creativeDimensions) => {
+                creative.width = creativeDimensions.split('x ')[0];
+                creative.height = creativeDimensions.split(' x')[1];
+            });
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button.
             cy.get('[data-ktwizard-type="action-submit"]').click().wait('@creativeDetailPage').its('status').should('eq', 200);  // Submitting the Creative Info for creation
             cy.location().then((currentLocation) => {
@@ -300,11 +308,14 @@ context('Creative', () => {
             creative.html += '.update.qa';
 
             cy.visit(`/creatives/${creative.id}`);
-            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Creative button
+            cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]', { timeout: 8000 }).click(); // clicking on Edit Creative button
             cy.get('[class="dropdown-item"]').first().click(); // clicking on edit Creative option
-            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name, { force: true }); 
+            cy.get('[placeholder="Enter Name"]').first().clear({ force: true }).type(creative.name, { force: true });
+            cy.get('[placeholder="Format"]').invoke('attr', 'aria-disabled').should('equal', 'true');  // Verifying Format field is disabled 
+            cy.get('[placeholder="Creative Media Type"]').invoke('attr', 'aria-disabled').should('equal', 'true');  // Verifying Creative Media Type field is disabled 
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button
             cy.get('.mat-input-element.mat-form-field-autofill-control.ng-pristine').clear({ force: true }).type(creative.html); // edit the creative XML field.
+            cy.get('[placeholder="Dimensions"]').invoke('attr', 'aria-disabled').should('equal', 'true');  // Verifying Dimensions field is disabled
             cy.get('[data-ktwizard-type="action-next"]').click();  //click on Next-Step button.
             cy.get('[data-ktwizard-type="action-submit"]').click().wait('@creativeDetailPage').its('status').should('eq', 200);  // Submitting the Creative Info for creation
         });
