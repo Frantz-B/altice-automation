@@ -4,6 +4,7 @@
   "description": "Automation for Altice Project",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "cypress run",
     "ui": "cypress open"
   },
@@ -19,5 +20,10 @@
   "homepage": "https://github.com/Frantz-B/altice-automation#readme",
   "dependencies": {
     "cypress": "4.12.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }
