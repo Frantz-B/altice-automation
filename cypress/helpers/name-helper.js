@@ -3,6 +3,6 @@
 exports.generateName = (suffix) => {
     const name = `${Cypress.moment().format('YY.MM.DD hh:mm:ss')}-UI ${suffix}`;
     return name;
-  };
+};
 
-exports.generateRandomNum = maxNumber => Math.floor(Math.random() * maxNumber);
+exports.generateRandomNum = (maxNumber) => Math.floor(Math.random() * maxNumber);

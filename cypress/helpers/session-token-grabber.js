@@ -11,5 +11,5 @@ exports.retrieveUserToken = async () => {
     };
 
     const loginResponse = await cy.request(loginRequestOption);
-    return loginResponse.body;  // returns user
+    return loginResponse.body; // returns user
 };
