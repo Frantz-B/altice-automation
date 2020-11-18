@@ -13,5 +13,6 @@ plugins: [
     "cypress"
   ]
 rules: {
-  "indent": ["error", 4]
+  "indent": ["error", 4],
+  { "tabWidth": 4 }
 }
