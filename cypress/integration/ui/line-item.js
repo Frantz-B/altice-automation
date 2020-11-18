@@ -40,6 +40,7 @@ context('Line-Item', () => {
                 if (placementRow.length === 0) {
                     throw new Error('No Campaign Id returned'); // Temp solution
                 } else {
+                    // eslint-disable-next-line max-len
                     const selectedPlacement = placementRow.find(({ canArchive }) => canArchive === true);
                     if (!selectedPlacement) {
                         throw new Error('No valid Placement returned'); // Temp solution

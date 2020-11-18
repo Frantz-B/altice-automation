@@ -254,8 +254,10 @@ context('Creative', () => {
             cy.get('[placeholder="Dimensions"]').invoke('attr', 'aria-disabled').should('equal', 'true'); // Verifying Dimensions field is disabled
             // Below grabs the value of the selected Creative Dimensions option
             cy.get('#mat-select-3').invoke('text').then((creativeDimensions) => {
-                creative.width = creativeDimensions.split('x ')[0];
-                creative.height = creativeDimensions.split(' x')[1];
+                // eslint-disable-next-line prefer-destructuring
+                creative.width = creativeDimensions.split('x ')[0]; // Will look into a cleaner solution
+                // eslint-disable-next-line prefer-destructuring
+                creative.height = creativeDimensions.split(' x')[1]; // Will look into a cleaner solution
             });
             cy.get('[data-ktwizard-type="action-next"]').click(); // click on Next-Step button.
             cy.get('[data-ktwizard-type="action-submit"]').click().wait('@creativeDetailPage')
