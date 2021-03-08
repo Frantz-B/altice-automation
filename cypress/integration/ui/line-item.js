@@ -118,6 +118,8 @@ context('Line-Item', () => {
             cy.get('[class="impressions-row"]').should('contain', Intl.NumberFormat().format(lineItem.impressionGoal)); // verifies Impression Goal of Line-Item
             cy.log('Verifies the Target Spend');
             cy.get('mat-cell.cdk-column-targetSpend').should('contain', Intl.NumberFormat().format(lineItem.targetSpend.toFixed(2))); // verifies Target Spend of Line-Item
+            cy.log('Verifies the Total Spent');
+            cy.get('mat-cell.mat-cell.cdk-column-totalSpend.mat-column-totalSpend').should('contain', '$0.00'); // verifies total spent of line item
 
             //  Verifying Line-Item Detail Page
             cy.get('[mattooltip="View line item"]').click(); // Clicks on Line-Item from Advertiser page
@@ -125,9 +127,9 @@ context('Line-Item', () => {
             cy.log('Verifies Status on Line-Item Detail page');
             cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', lineItem.status); // verifies Status on Line-Item Detail page
             cy.log('Verifies Start Date on Line-Item Detail page');
-            cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(lineItem.startDate).format('ll')); // verifies Start Date on Line-Item Detail page
+            cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(lineItem.startDate).format('D/M/YY')); // verifies Start Date on Line-Item Detail page
             cy.log('Verifies End Date on Line-Item Detail page');
-            cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('ll')); // verifies End Date on Line-Item Detail page
+            cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('D/M/YY')); // verifies End Date on Line-Item Detail page
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', lineItem.format); // verifies Format on Line-Item Detail page
             cy.log('Verifies Target Spend on Line-Item Detail page');
@@ -154,6 +156,8 @@ context('Line-Item', () => {
             cy.get('span > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Goal icon is displayed
             cy.log('Verifies Target Spend icon is displayed');
             cy.get('div:nth-child(2) > ul > li:nth-child(3) > label > kt-icon > img').should('have.attr', 'src').should('include', 'target_spend-24px.svg'); // verifies target spend icon is displayed
+            cy.log('Verifies Total Spent icon is displayed');
+            cy.get('li:nth-child(4) > label > kt-icon > img').should('have.attr', 'src').should('include', 'money_bag-24px.svg'); // verifies Total Spent icon is displayed
         });
 
         it('Edit Banner Line-Item', () => {
@@ -214,9 +218,9 @@ context('Line-Item', () => {
             cy.log('Verifies Status on Line-Item Detail page');
             cy.get('div > div:nth-child(1) > ul > li:nth-child(1)').first().should('contain', lineItem.status); // verifies Status on Line-Item Detail page
             cy.log('Verifies Start Date on Line-Item Detail page');
-            cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(lineItem.startDate).format('ll')); // verifies Start Date on Line-Item Detail page
+            cy.get(' div > div:nth-child(2) > ul > li:nth-child(1)').first().should('contain', Cypress.moment(lineItem.startDate).format('D/M/YY')); // verifies Start Date on Line-Item Detail page
             cy.log('Verifies End Date on Line-Item Detail page');
-            cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('ll')); // verifies End Date on Line-Item Detail page
+            cy.get(' div > div:nth-child(2) > ul > li:nth-child(2)').first().should('contain', Cypress.moment(lineItem.endDate).format('D/M/YY')); // verifies End Date on Line-Item Detail page
             cy.log('Verifies Format on Line-Item Detail page');
             cy.get('div:nth-child(1) > ul > li:nth-child(2)').last().should('contain', lineItem.format); // verifies Format on Line-Item Detail page
             cy.log('Verifies Target Spend on Line-Item Detail page');
@@ -243,6 +247,8 @@ context('Line-Item', () => {
             cy.get('span > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Goal icon is displayed
             cy.log('Verifies Target Spend icon is displayed');
             cy.get('div:nth-child(2) > ul > li:nth-child(3) > label > kt-icon > img').should('have.attr', 'src').should('include', 'target_spend-24px.svg'); // verifies target spend icon is displayed
+            cy.log('Verifies Total Spent icon is displayed');
+            cy.get('li:nth-child(4) > label > kt-icon > img').should('have.attr', 'src').should('include', 'money_bag-24px.svg'); // verifies Total Spent icon is displayed
         });
     });
 });

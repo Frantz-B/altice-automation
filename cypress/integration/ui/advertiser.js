@@ -72,7 +72,7 @@ context('Advertiser', () => {
 
             // Adding Political Info
             cy.get('[role="switch"]').click({ force: true }); // Toggle for turning on Political
-            cy.get('#mat-select-1').click({ force: true }); // Dropdown for 'Federal' or 'State/local'
+            cy.get('[formcontrolname="types"]').click({ force: true }); // Dropdown for 'Federal' or 'State/local'
             cy.get('[class="mat-option-text"]').first().click({ force: true }); // Selecting Federal
             cy.get('[type="checkbox"]').last().click({ force: true }); // Adding check to required checkbox
             cy.get('[mattooltip="Save changes"]').click().wait('@editAdvertiser')

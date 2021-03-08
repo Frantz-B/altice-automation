@@ -83,6 +83,8 @@ context('Placement', () => {
             cy.get('mat-cell.cdk-column-rateUnit').should('contain', 'CPM'); // verifies Rate Unit Type of Placement
             cy.log('Verifies Impression Goal');
             cy.get('.mat-cell.cdk-column-impressionGoal').should('contain', Intl.NumberFormat().format(placement.impressionGoal)); // verifies Impression Goal of Placement
+            cy.log('Verifies Total Spent');
+            cy.get('.mat-cell.mat-cell.cdk-column-totalSpent.mat-column-totalSpent').should('contain', '$0.00'); // verifies total spent of Placement
 
             //  Verifying Placement Detail Page
             cy.get('[mattooltip="View placement"]').click(); // Clicks on Placement from Advertiser page
@@ -90,27 +92,35 @@ context('Placement', () => {
             cy.log('Verifies Rate on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(1)').first().should('contain', `${placement.rate}.00`); // verifies Rate on Placement Detail page
             cy.log('Verifies Rate Unit Type on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM'); // verifies Rate Unit Type on Placement Detail page
+            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li').first().should('contain', 'CPM'); // verifies Rate Unit Type on Placement Detail page
             cy.log('Verifies Impression Goal on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(placement.impressionGoal)); // verifies Impression Goal on Placement Detail page
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', Intl.NumberFormat().format(placement.impressionGoal)); // verifies Impression Goal on Placement Detail page
             cy.log('Verifies Target Spend on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(3)').last().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2))); // verifies Target Spend on Placement Detail page
+            cy.get('div.col-sm-5 > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2))); // verifies Target Spend on Placement Detail page
+            cy.log('Verifies time zone on Placement Detail page');
+            cy.get('.col-sm-5.col-lg-6 > ul > li:nth-child(3)').first().should('contain', 'America/New_York'); // verifies time zone default value is America/New_York
+            cy.log('Verifies Total Spent on Placement Detail page');
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(4)').first().should('contain', '$0.00'); // verifies total spent = 0.00
 
             //  Verifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
             cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'monetization_on-24px.svg'); // verifies Rate icon is displayed
             cy.log('Verifies Rate Unit icon is displayed');
-            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'trending_up_dark-24px.svg'); // verifies Rate Unit icon is displayed
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'trending_up_dark-24px.svg'); // verifies Rate Unit icon is displayed
             cy.log('Verifies Flight Dates icon is displayed');
-            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'date_range-24px.svg'); // verifies Flight Dates icon is displayed
+            cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include', 'date_range-24px.svg'); // verifies Flight Dates icon is displayed
             cy.log('Verifies Impression Goal icon is displayed');
-            cy.get('div.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Impression Goal icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Impression Goal icon is displayed
             cy.log('Verifies Impressions icon is displayed');
             cy.get('h6 > i > img').should('have.attr', 'src').should('include', 'visibility_dark-24px.svg'); // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Goal icon is displayed
             cy.log('Verifies Target Spend icon is displayed');
             cy.get('label > kt-icon > img').should('have.attr', 'src').should('include', 'target_spend-24px.svg'); // verifies target spend icon is displayed
+            cy.log('Verifies Time Zone icon is displayed');
+            cy.get('.col-sm-5.col-lg-6 > ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include', 'language-24px.svg'); // verifies time zone icon is displayed
+            cy.log('Verifies Total Spent icon is displayed');
+            cy.get('li:nth-child(4) > label > i > img').should('have.attr', 'src').should('include', 'money_bag-24px.svg'); // verifies Total Spent icon is displayed
         });
 
         it('Edit Placement', () => {
@@ -135,27 +145,35 @@ context('Placement', () => {
             cy.log('Verifies Rate on Placement Detail page');
             cy.get('.margin-bottom-10-mobile > ul > li:nth-child(1)').first().should('contain', `${placement.rate}.00`); // verifies Rate on Placement Detail page
             cy.log('Verifies Rate Unit Type on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', 'CPM'); // verifies Rate Unit Type on Placement Detail page
+            cy.get('div.col-sm-5.col-lg-6.margin-bottom-10-mobile > ul > li').first().should('contain', 'CPM'); // verifies Rate Unit Type on Placement Detail page
             cy.log('Verifies Impression Goal on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').last().should('contain', Intl.NumberFormat().format(placement.impressionGoal)); // verifies Impression Goal on Placement Detail page
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(2)').first().should('contain', Intl.NumberFormat().format(placement.impressionGoal)); // verifies Impression Goal on Placement Detail page
             cy.log('Verifies Target Spend on Placement Detail page');
-            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(3)').last().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2))); // verifies Target Spend on Placement Detail page
+            cy.get('div.col-sm-5 > ul > li:nth-child(2)').first().should('contain', Intl.NumberFormat().format(placement.targetSpend.toFixed(2))); // verifies Target Spend on Placement Detail page
+            cy.log('Verifies Time Zone on Placement Detail page');
+            cy.get('.col-sm-5.col-lg-6 > ul > li:nth-child(3)').first().should('contain', 'America/New_York'); // verifies time zone default value is America/New_York
+            cy.log('Verifies Total Spent on Placement Detail page');
+            cy.get('.margin-bottom-10-mobile > ul > li:nth-child(4)').first().should('contain', '$0.00'); // verifies total spent = 0.00
 
             //  Verifying Placement detail page icons
             cy.log('Verifies Rate icon is displayed');
             cy.get('li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'monetization_on-24px.svg'); // verifies Rate icon is displayed
             cy.log('Verifies Rate Unit icon is displayed');
-            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'trending_up_dark-24px.svg'); // verifies Rate Unit icon is displayed
+            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'trending_up_dark-24px.svg'); // verifies Rate Unit icon is displayed
             cy.log('Verifies Flight Dates icon is displayed');
-            cy.get('.col-sm-5 > ul > li:nth-child(1) > label > i > img').should('have.attr', 'src').should('include', 'date_range-24px.svg'); // verifies Flight Dates icon is displayed
+            cy.get('li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include', 'date_range-24px.svg'); // verifies Flight Dates icon is displayed
             cy.log('Verifies Impression Goal icon is displayed');
-            cy.get('.col-sm-5 > ul > li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Impression Goal icon is displayed
+            cy.get('li:nth-child(2) > label > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Impression Goal icon is displayed
             cy.log('Verifies Impressions icon is displayed');
             cy.get('h6 > i > img').should('have.attr', 'src').should('include', 'visibility_dark-24px.svg'); // verifies Impressions icon is displayed
             cy.log('Verifies Goal icon is displayed');
             cy.get('span > i > img').should('have.attr', 'src').should('include', 'emoji_events-24px.svg'); // verifies Goal icon is displayed
             cy.log('Verifies Target Spend icon is displayed');
             cy.get('label > kt-icon > img').should('have.attr', 'src').should('include', 'target_spend-24px.svg'); // verifies target spend icon is displayed
+            cy.log('Verifies Time Zone icon is displayed');
+            cy.get('.col-sm-5.col-lg-6 > ul > li:nth-child(3) > label > i > img').should('have.attr', 'src').should('include', 'language-24px.svg'); // verifies time zone icon is displayed
+            cy.log('Verifies Total Spent icon is displayed');
+            cy.get('li:nth-child(4) > label > i > img').should('have.attr', 'src').should('include', 'money_bag-24px.svg'); // verifies Total Spent icon is displayed
         });
     });
 });
