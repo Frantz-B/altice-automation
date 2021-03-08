@@ -1,3 +1,4 @@
+const { requestOptions } = require('../../helpers/request-helper');
 const { retrieveUserToken } = require('../../helpers/session-token-grabber');
 const { generateName, generateRandomNum } = require('../../helpers/name-helper');
 
@@ -21,16 +22,7 @@ context('Line-Item', () => {
         it('Retrieve an Campaign to select as Parent', () => {
             const lastCreatedCampaign = Cypress.moment().format('YY.');
 
-            const getRequest = (options = {}) => {
-                const defaultOptions = {
-                    auth: {
-                        bearer: apiToken,
-                    },
-                };
-                return Cypress._.extend(defaultOptions, options); // _ using lodash built-in library
-            };
-
-            const campaignRequestOptions = getRequest({
+            const campaignRequestOptions = requestOptions(apiToken, {
                 url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedCampaign}`,
             });
 
