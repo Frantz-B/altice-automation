@@ -1,4 +1,5 @@
 const { retrieveUserToken } = require('../../helpers/session-token-grabber');
+const { requestOptions } = require('../../helpers/request-helper');
 const { generateName } = require('../../helpers/name-helper');
 
 context('Creative', () => {
@@ -18,29 +19,20 @@ context('Creative', () => {
         const creative = {};
 
         // create CRUD test
-        it('Retrieve Placement to select as Parent', () => {
-            const lastCreatedPlacement = Cypress.moment().format('YY.');
+        it('Retrieve Campaign to select as Parent', () => {
+            const lastCreatedCampaign = Cypress.moment().format('YY.');
 
-            const getRequest = (options = {}) => {
-                const defaultOptions = {
-                    auth: {
-                        bearer: apiToken,
-                    },
-                };
-                return Cypress._.extend(defaultOptions, options); // _ using lodash built-in library
-            };
-
-            const placementRequestOptions = getRequest({
-                url: `/api/v1/placements?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedPlacement}`,
+            const campaignRequestOptions = requestOptions(apiToken, {
+                url: `/api/v1/campaigns?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedCampaign}`,
             });
 
-            cy.request(placementRequestOptions).then((resp) => {
-                const placementRow = resp.body.rows;
-                if (placementRow.length === 0) {
-                    throw new Error('No Placement Id returned'); // Temp solution
+            cy.request(campaignRequestOptions).then((resp) => {
+                const campaignRow = resp.body.rows;
+                if (campaignRow.length === 0) {
+                    throw new Error('No Campaign Id returned'); // Temp solution
                 } else {
-                    creative.placementId = placementRow[0].id;
-                    cy.log(`Placement ID found:  ${creative.placementId}`);
+                    creative.campaignId = campaignRow[0].id;
+                    cy.log(`Campaign ID found:  ${creative.campaignId}`);
                 }
             });
         });
@@ -48,16 +40,7 @@ context('Creative', () => {
         it('Retrieve Line Item to select as Parent', () => {
             const lastCreatedLineItem = Cypress.moment().format('YY.');
 
-            const getRequest = (options = {}) => {
-                const defaultOptions = {
-                    auth: {
-                        bearer: apiToken,
-                    },
-                };
-                return Cypress._.extend(defaultOptions, options); // _ using lodash built-in library
-            };
-
-            const LineItemRequestOptions = getRequest({
+            const LineItemRequestOptions = requestOptions(apiToken, {
                 url: `/api/v1/line-items?sort_order=desc&sort_by=id&page=0&limit=10&search=${lastCreatedLineItem}`,
             });
 
@@ -72,18 +55,18 @@ context('Creative', () => {
             });
         });
 
-        it('Create VAST Video Creative at Placement Lvl', () => {
+        it('Create VAST Video Creative at Campaign Lvl', () => {
             cy.server();
             cy.route('/api/v1/creatives/*').as('creativeDetailPage');
 
-            creative.name = generateName('Creative-lvl_Placement');
-            creative.vastXml = 'https://Placement-lvl-Creative.com';
+            creative.name = generateName('Creative-lvl_Campaign');
+            creative.vastXml = 'https://Campaign-lvl-Creative.com';
             creative.mediaType = 'VAST';
             creative.format = 'Video';
             creative.height = '250';
             creative.width = '300';
 
-            cy.visit(`/placements/${creative.placementId}`);
+            cy.visit(`/campaigns/${creative.campaignId}`);
             cy.get('[mattooltip="Create new Creative"]', { timeout: 8000 }).click(); // clicking on create new creative button
             cy.get('[placeholder="Enter Name"]').click().type(creative.name, { force: true }); // Force true need to cypress to type entire string consistently
             cy.get('[placeholder="Format"]').click(); // selecting Format
@@ -104,11 +87,11 @@ context('Creative', () => {
             });
         });
 
-        it('Verify created VAST Video Creative on Placement Lvl table', () => {
+        it('Verify created VAST Video Creative on Campaign Lvl table', () => {
             cy.server();
-            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&placementId=*&search=*').as('searchCreative');
+            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&campaignId=*&search=*').as('searchCreative');
 
-            cy.visit(`/placements/${creative.placementId}`);
+            cy.visit(`/campaigns/${creative.campaignId}`);
             cy.get('[placeholder="Search"]').last().type(creative.name).wait('@searchCreative')
                 .its('status')
                 .should('eq', 200); // adding wait for api return results
@@ -168,11 +151,11 @@ context('Creative', () => {
                 .should('eq', 200); // Submitting the Creative Info for creation
         });
 
-        it('Verify updated Video Creative on Placement Lvl table', () => {
+        it('Verify updated Video Creative on Campaign Lvl table', () => {
             cy.server();
-            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&placementId=*&search=*').as('searchCreative');
+            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&campaignId=*&search=*').as('searchCreative');
 
-            cy.visit(`/placements/${creative.placementId}`);
+            cy.visit(`/campaigns/${creative.campaignId}`);
             cy.get('[placeholder="Search"]').last().type(creative.name).wait('@searchCreative')
                 .its('status')
                 .should('eq', 200); // adding wait for api return results
@@ -271,7 +254,7 @@ context('Creative', () => {
 
         it('Verify created Banner Creative on Line-item Lvl table.', () => {
             cy.server();
-            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&lineItemId=*&placementId=*&search=*').as('searchCreative');
+            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&lineItemId=*&campaignId=*&search=*').as('searchCreative');
 
             cy.visit(`/line-items/${creative.lineItemId}`);
             cy.get('[placeholder="Search"]').type(creative.name).wait('@searchCreative')
@@ -338,7 +321,7 @@ context('Creative', () => {
 
         it('Verify updated Banner Creative on Line-Item Lvl table.', () => {
             cy.server();
-            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&lineItemId=*&placementId=*&search=*').as('searchCreative');
+            cy.route('/api/v1/creatives?sort_order=desc&sort_by=id&page=0&limit=25&lineItemId=*&campaignId=*&search=*').as('searchCreative');
 
             cy.visit(`/line-items/${creative.lineItemId}`);
             cy.get('[placeholder="Search"]').type(creative.name).wait('@searchCreative')
@@ -383,7 +366,7 @@ context('Creative', () => {
 
         it('Archive Banner Creative', () => {
             cy.get('[class="dropdown-toggle mat-raised-button mat-button-base mat-primary"]').click(); // clicking on Edit Creative button
-            cy.get('button:nth-child(2)').last().click(); // clicking on archive Placement option
+            cy.get('button:nth-child(2)').last().click(); // clicking on archive Campaign option
         });
 
         it('Verify the Banner Creative is archived in UI', () => {
