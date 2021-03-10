@@ -6,7 +6,6 @@
     "testFiles": [
         "*/advertiser*", 
         "*/campaign*", 
-        "*/placement*", 
         "*/line-item*", 
         "*/creative*", 
         "*/login*"
